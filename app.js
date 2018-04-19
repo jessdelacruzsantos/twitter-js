@@ -1,10 +1,19 @@
 const express = require('express');
 const app = express();
 const morgan = require('morgan');
+const nunjucks = require('nunjucks');
+
+app.set('view engine', 'html'); // have res.render work with html files
+app.engine('html', nunjucks.render); // when giving html files to res.render, tell it to use nunjucks
+nunjucks.configure('views', {noCache: true}); 
+
+let people = [{name: 'Gandolf'}, {name: 'Frodo'},{name: 'Hermione'}
+];
+
+let title = 'An Example';
 
 app.use(function(req, res , next){
-    console.log('In use.');
-    console.log('End of use.');
+   
     next(); // Never forget!!!
 });
 
@@ -12,7 +21,7 @@ app.get('/', function (req, res) {
     let code = res.statusCode;
 
     if (code === 200) {
-        console.log('GET / ' + code);
+        res.render('index.html', {title: title, people: people});
     } else {
         console.log('Something is terribly wrong: ' + code);
 
