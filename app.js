@@ -15,6 +15,8 @@ app.use(function(req, res , next){
 
 app.use('/', routes);
 
+app.use(express.static('public'));
+
 app.listen(3000, function (){
     console.log('Listening on 3000');
 })

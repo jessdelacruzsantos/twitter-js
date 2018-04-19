@@ -8,4 +8,8 @@ router.get('/', function (req, res) {
     res.render( 'index.html', {tweets});
 });
 
+// router.get('/stylesheets/style.css', function (req, res) {
+//     res.sendFile('/Users/jessiedelacruz/Desktop/twitter-js/public/stylesheets/style.css');
+// })
+
 module.exports = router;
